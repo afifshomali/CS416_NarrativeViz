@@ -19,8 +19,7 @@ body {
 }
 
 .container {
-  width: 90%;
-  max-width: Chrome 1;
+  width: 80vw;
   margin-top: 20px;
   padding: 20px;
   background-color: #fff;
