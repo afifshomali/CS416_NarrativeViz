@@ -1,0 +1,56 @@
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p,
+a, img, em, strong, b, i, u,
+ul, ol, li, form, label,
+fieldset, legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f0f0f0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.box {
+  background-color: #f2f2f2;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.next-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+  background-color: #0056b3;
+}
