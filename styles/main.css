@@ -61,3 +61,21 @@ h1 {
 .back-button:hover {
   background-color: #0056b3 ;
 }
+
+.small-font {
+  font-size: 14px;
+  color: #888; 
+}
+
+.link {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.link a {
+  color: #0052a9;
+}
+
+.link a:hover {
+  color: #66b0fa; 
+}
