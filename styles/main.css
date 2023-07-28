@@ -19,7 +19,7 @@ body {
 }
 
 .container {
-  width: 80vw;
+  width: 60vw;
   margin-top: 20px;
   padding: 20px;
   background-color: #fff;
@@ -31,14 +31,12 @@ h1 {
 }
 
 .box {
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  padding: 5px;
 }
 
 .next-button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 7px 20px;
   background-color: #28a745;
   color: #fff;
   text-decoration: none;
@@ -63,13 +61,15 @@ h1 {
 }
 
 .small-font {
-  font-size: 14px;
-  color: #888; 
+  font-size: 12px;
+  color: #a0a0a0; 
+  margin-bottom: -5px;
+  margin-top: 5px;
 }
 
 .link {
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .link a {
@@ -78,4 +78,9 @@ h1 {
 
 .link a:hover {
   color: #66b0fa; 
+}
+
+.title {
+  border-bottom: 2px solid #dcdcdc; 
+  padding-bottom: 10px; 
 }
