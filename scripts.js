@@ -164,7 +164,7 @@ async function chart1() {
         x: xScale(data.find(d => d.state === "California").cases) - 5,
         y: yScale(data.find(d => d.state === "California")["Total Job Loss Index"]) + 10,
         note: {
-            label: "California had the most ...",
+            label: "California had the most cases at the end of 2020 as well as the most jobs lost.",
             bgPadding: {"top":15,"left":10,"right":10,"bottom":10},
             title: "California",
             orientation: "middle",
@@ -172,27 +172,27 @@ async function chart1() {
         },
         type: d3.annotationCallout,
         dx: -100,
-        dy: 100
+        dy: 50
     },
     {
         x: xScale(data.find(d => d.state === "Idaho").cases)+ 5,
         y: yScale(data.find(d => d.state === "Idaho")["Total Job Loss Index"]),
         note: {
-            label: "Idaho ...",
+            label: "Idaho had the highest job gain rate of 2.79%",
             bgPadding: {"top":15,"left":10,"right":10,"bottom":10},
             title: "Idaho",
             orientation: "middle",
             align: "left"
         },
         type: d3.annotationCallout,
-        dx: 50,
-        dy: 20
+        dx: 30,
+        dy: 30
     },
     {
         x: xScale(data.find(d => d.state === "Utah").cases)+ 5,
         y: yScale(data.find(d => d.state === "Utah")["Total Job Loss Index"]),
         note: {
-            label: "Utah ...",
+            label: "Utah gained jobs during COVID, with about 14 thousand jobs gained.",
             bgPadding: {"top":15,"left":10,"right":10,"bottom":10},
             title: "Utah",
             orientation: "middle",
@@ -200,7 +200,7 @@ async function chart1() {
         },
         type: d3.annotationCallout,
         dx: 50,
-        dy: 20
+        dy: 10
     }
     ]
 
@@ -212,4 +212,23 @@ async function chart1() {
         .call(makeAnnotations);
 
 
+}
+
+
+async function chart2() {
+    // data
+    const data = await d3.csv("https://afifshomali.github.io/data/final.csv");
+
+    // setting up canvas for chart
+    const margins = { top: 10, right: 10, bottom: 50, left: 100 };
+    const width = 1500 - margins.left - margins.right;
+    const height = 1000 - margins.top - margins.bottom;
+
+    const svg = d3.select("#chart1").append("svg")
+        .attr("width", width + margins.left + margins.right)
+        .attr("height", height + margins.top + margins.bottom)
+        .append("g")
+        .attr("transform", "translate("+ margins.left +", "+ margins.top +")");
+
+    
 }
