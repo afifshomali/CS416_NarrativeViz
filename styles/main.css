@@ -92,3 +92,7 @@ div.tooltip {
   font: 12px Arial, sans-serif;
   pointer-events: none;
 }
+
+g.annotation-group text {
+  font-size: 12px;
+}
