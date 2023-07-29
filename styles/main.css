@@ -85,3 +85,10 @@ h1 {
   border-bottom: 2px solid #dcdcdc; 
   padding-bottom: 10px; 
 }
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  font: 12px Arial, sans-serif;
+  pointer-events: none;
+}
