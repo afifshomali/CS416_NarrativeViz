@@ -19,7 +19,7 @@ body {
 }
 
 .container {
-  width: 1000px;
+  width: 1500px;
   max-width: 2000px;
   margin-top: 20px;
   padding: 20px;
@@ -37,7 +37,7 @@ h1 {
 
 .next-button {
   display: inline-block;
-  padding: 7px 20px;
+  padding: 8px 20px;
   background-color: #28a745;
   color: #fff;
   text-decoration: none;
@@ -46,7 +46,7 @@ h1 {
 
 .back-button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 20px;
   background-color: #007bff;
   color: #fff;
   text-decoration: none;
