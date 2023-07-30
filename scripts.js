@@ -66,7 +66,6 @@ async function chart1() {
         .range(d3.schemeCategory10);
 
     // Add Data & tooltip functionality
-    // TODO: Add annotations For two below x axis & california & add regions so that we can color based on region 
     svg.selectAll("circle")
         .data(data)
         .enter()
@@ -283,7 +282,6 @@ async function chart2() {
         .range(d3.schemeCategory10);
 
     // Add Data & tooltip functionality
-    // TODO: Add annotations For two below x axis & california & add regions so that we can color based on region 
     svg.selectAll("circle")
         .data(data)
         .enter()
@@ -559,7 +557,7 @@ async function chart3() {
 
     }
 
-    // Listener to update bar charts
+    // Update bar chart when drop down menu changes
     d3.select("#select-state").on("change", function() {
         const state = d3.select(this).property("value");
 
