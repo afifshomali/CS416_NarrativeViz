@@ -377,7 +377,7 @@ async function chart2() {
     
         const annotations = [{
             x: 1140,
-            y: 200,
+            y: 210,
             note: {
                 label: "States in the North East region had high job loss rates",
                 bgPadding: {"top":15,"left":10,"right":10,"bottom":10},
@@ -394,7 +394,7 @@ async function chart2() {
         },
         {
             x: 750,
-            y: 299,
+            y: 308,
             note: {
                 label: "",
                 bgPadding: {"top":15,"left":10,"right":10,"bottom":10},
@@ -403,7 +403,7 @@ async function chart2() {
             },
             type: d3.annotationCalloutCircle,
             dx: 40,
-            dy: -150,
+            dy: -148,
             subject: {
                 radius: 20,
             }
