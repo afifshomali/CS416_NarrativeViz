@@ -236,7 +236,7 @@ async function chart2() {
         .range([0, width]);
     
     const yScale = d3.scaleLinear()
-        .domain([-4000, 13000])
+        .domain([-3500, 13000])
         .range([height, 0]);
 
     svg.append("g")
@@ -417,5 +417,155 @@ async function chart2() {
             .attr("class", "annotation-group")
             .call(makeAnnotations);
 
+    
+}
+
+async function chart3() {
+    // data
+    const data = await d3.csv("https://afifshomali.github.io/data/final.csv");
+
+    // setting up canvas for chart
+    const margins = { top: 10, right: 10, bottom: 50, left: 10 };
+    const width = 1500 - margins.left - margins.right;
+    const height = 1000 - margins.top - margins.bottom;
+
+    const svg = d3.select("#chart3").append("svg")
+        .attr("width", width + margins.left + margins.right)
+        .attr("height", height + margins.top + margins.bottom)
+        .append("g")
+        .attr("transform", "translate("+ margins.left +", "+ margins.top +")");
+
+    const cols = [
+        "Agriculture, Forestry, Fishing, and Hunting",
+        "Mining, Quarrying, and Oil and Gas Extractions",
+        "Utilities",
+        "Construction",
+        "Manufacturing",
+        "Wholesale Trade",
+        "Retail Trade",
+        "Transportation and Warehousing",
+        "Information",
+        "Finance and Insurance",
+        "Real Estate and Rental and Leasing",
+        "Professional, Scientific, and Technical Services",
+        "Management of Companies and Enterprises",
+        "Administrative and Support and Waste Management and Remediation Services",
+        "Educational Services",
+        "Health Care and Social Assistance",
+        "Arts, Entertainment, and Recreation",
+        "Accomodation and Food Services",
+        "Other Services",
+        "Public Administration"
+    ]
+
+    //Create dropdown menu 
+    const states = [...new Set(data.map((d) => d.state))];
+
+    d3.select("#select-state").selectAll("option")
+        .data(states)
+        .enter()
+        .append("option")
+        .text(function(d) {
+            return d;
+        })
+        .attr("value", function(d) {
+            return d;
+        });
+    //Create Scales
+    const xScale = d3.scaleLinear()
+        .domain([-5000, 20000])
+        .range([0, width]);
+    
+    const yScale = d3.scaleBand()
+        .domain(cols)
+        .range([height, 0])
+
+    svg.append("g")
+        .attr("transform", "translate(0, "+height+")")
+        .call(d3.axisBottom(xScale).ticks(0));
+
+    svg.append("g")
+        .attr("transform", "translate(296, 0)")
+        .call(d3.axisLeft(yScale))
+        .selectAll("text")
+        .style("font-size", "10px")
+        .attr("x", 10)
+        .style("text-anchor", "start");
+    
+    function updatebars(selected_state) {
+        // Re-drawing Bar charts
+        svg.selectAll("*").remove();
+        
+        svg.selectAll(".bar")
+            .data(cols)
+            .enter()
+            .append("rect")
+            .attr("x", function(d) {
+             return selected_state[d] < 0 ? xScale(selected_state[d]) + 1: xScale(0) + 1;
+            })
+            .attr("height", yScale.bandwidth())
+            .attr("y", function(d) {
+                return yScale(d);
+            })
+            .transition()
+            .duration(1000)
+            .attr("width", function(d) {
+                return Math.abs(xScale(selected_state[d]) - xScale(0));
+            })
+            .attr("fill", "steelblue");
+        
+        svg.append("g")
+            .attr("transform", "translate(296, 0)")
+            .call(d3.axisLeft(yScale))
+            .selectAll("text")
+            .style("font-size", "10px")
+            .attr("x", 10)
+            .style("text-anchor", "start");
+        
+        svg.append("g")
+            .attr("transform", "translate(0, "+height+")")
+            .call(d3.axisBottom(xScale).ticks(0));
+        
+        // Add tootips so user can see value of bar
+        const tooltip = d3.select("#chart3")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0)
+            .style("background-color", "black")
+            .style("padding", "5")
+            .style("color", "white")
+            .style("width", "200px")
+            .style("height", "40px")
+            .style("display", "flex")
+            .style("justify-content", "center")
+            .style("align-items", "center");
+
+        svg.selectAll("rect")
+        .on("mouseover", (event, d) => {
+            d3.select(event.target).attr("stroke", "black")
+            .attr("stroke-width", 2);
+
+            tooltip.transition().duration(200).style("opacity", 0.9);
+            tooltip.html(
+              `<p>Jobs Lost in ${d}: ${Math.round(selected_state[d])}</p>`
+            )
+              .style("left", (event.pageX+10) + "px")
+              .style("top", (event.pageY) + "px");
+          })
+          .on("mouseout", (event) => {
+            d3.select(event.target).attr("stroke", "none");
+            tooltip.transition().duration(500).style("opacity", 0);
+          });
+
+    }
+
+    // Listener to update bar charts
+    d3.select("#select-state").on("change", function() {
+        const state = d3.select(this).property("value");
+
+        const StateData = data.find((d) => d.state === state);
+
+        updatebars(StateData);
+    });
     
 }
